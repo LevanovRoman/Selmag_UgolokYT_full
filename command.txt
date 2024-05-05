@@ -1,0 +1,68 @@
+spring.datasource.driver-class-name=org.postgresql.Driver
+spring.datasource.url=jdbc:postgresql://localhost:5433/selmag_db
+spring.datasource.username=admin
+spring.datasource.password=admin
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+
+http://localhost:8081/catalogue-api/products?filter=%25море
+
+<dependency>
+    <groupId>org.postgresql</groupId>
+    <artifactId>postgresql</artifactId>
+    <scope>runtime</scope>
+</dependency>
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-data-jpa</artifactId>
+</dependency>
+
+CREATE TABLE question
+(
+    id SERIAL PRIMARY KEY,
+    question_title CHARACTER VARYING(300),
+    option1 CHARACTER VARYING(300),
+    option2 CHARACTER VARYING(300),
+    option3 CHARACTER VARYING(300),
+    option4 CHARACTER VARYING(300),
+    right_answer CHARACTER VARYING(30),
+    difficultylevel CHARACTER VARYING(30),
+    category CHARACTER VARYING(30),
+
+);
+
+docker compose up -d
+docker compose down
+
+docker run --name catalogue-db -p 5432:5432 -e POSTGRES_DB=catalogue -e POSTGRES_USER=admin -e POSTGRES_PASSWORD=admin postgres:16
+
+docker run -v ${PWD}:/var/lib/postgresql/data questions_history
+
+{
+    "questionTitle": "{{$randomFirstName}}",
+    "option1": "1",
+    "option2": "2",
+    "option3": "3",
+    "option4": "4",
+    "rightAnswer": "{{$randomLastName}}",
+    "difficultylevel": "{{$randomLastName}}",
+    "category": "{{$randomLastName}}"
+  }
+
+private String questionTitle;
+    private String option1;
+    private String option2;
+    private String option3;
+    private String option4;
+    private String rightAnswer;
+    private String difficultylevel;
+    private String category;
+
+we can use MappingJacksonValue and SimpleBeanPropertyFilter for dynamic filter
+to Question class for specific api rather than creating new QuizWrapper class
+
+{
+        "username": "gc",
+        "password": "1234",
+        "role": "USER"
+    }
